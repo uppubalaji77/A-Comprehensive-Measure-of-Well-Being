@@ -1,84 +1,119 @@
-# Saving the Trained Model
+# Flask Web Application
 
 ## Overview
 
-After successfully training and validating the Linear Regression model, the next step is to save the trained model for future use. The model is serialized and stored as a **`.pkl` (Pickle)** file. Saving the model eliminates the need to retrain it every time the application runs, reducing both execution time and computational cost.
+After training and saving the machine learning model, the next step is to develop a web application using **Flask**. Flask provides a lightweight framework for building web applications, handling user requests, and displaying prediction results.
 
-The saved model can be loaded directly into the Flask web application to generate predictions for new user inputs.
-
----
-
-## What is Pickle?
-
-**Pickle** is a built-in Python module used for **serialization** and **deserialization** of Python objects.
-
-- **Serialization:** Converts a Python object into a byte stream that can be stored in a file.
-- **Deserialization:** Restores the byte stream back into the original Python object.
-
-Since machine learning models are Python objects, Pickle provides an efficient way to save and reuse trained models.
+The trained HDI prediction model is loaded using the **Pickle** module, while **NumPy** is used to process numerical input data before passing it to the model for prediction.
 
 ---
 
-## Import the Pickle Library
+## Import Required Libraries
+
+Import the required libraries for the Flask application.
 
 ```python
+from flask import Flask, render_template, request
+import numpy as np
 import pickle
 ```
 
+**Purpose:**
+- **Flask** – Creates the web application and manages routes.
+- **Pickle** – Loads the trained machine learning model.
+- **NumPy** – Handles numerical input data for prediction.
+
 ---
 
-## Save the Trained Model
+## Initialize the Flask Application
+
+Create a Flask application and load the saved HDI prediction model.
 
 ```python
-with open("models/hdi_prediction_model.pkl", "wb") as file:
-    pickle.dump(model, file)
+app = Flask(__name__)
+
+model = pickle.load(open("models/hdi_prediction_model.pkl", "rb"))
 ```
 
 **Purpose:**
-- Saves the trained Linear Regression model.
-- Stores the model in the `models/` directory.
-- Creates a reusable `.pkl` file.
+- Initializes the Flask application.
+- Loads the trained model into memory.
+- Makes the model available for predictions.
 
 ---
 
-## Load the Saved Model
+## Home Route
+
+The home route displays the application's main page.
 
 ```python
-with open("models/hdi_prediction_model.pkl", "rb") as file:
-    loaded_model = pickle.load(file)
+@app.route("/")
+def home():
+    return render_template("home.html")
 ```
 
 **Purpose:**
-- Loads the previously saved model.
-- Makes the model available for prediction without retraining.
+- Handles requests to the home page.
+- Renders the `home.html` template.
+- Introduces the HDI Prediction System.
 
 ---
 
-## Make Predictions Using the Saved Model
+## Prediction Route
+
+The `/predict` route receives user input, processes it, and generates an HDI prediction.
 
 ```python
-prediction = loaded_model.predict(X_test)
+@app.route("/predict", methods=["POST"])
+def predict():
 
-print(prediction)
+    input_features = [float(x) for x in request.form.values()]
+
+    final_input = np.array([input_features])
+
+    prediction = model.predict(final_input)
+
+    output = round(prediction[0], 3)
+
+    return render_template(
+        "index.html",
+        prediction_text=f"Predicted HDI Score: {output}"
+    )
 ```
 
 **Purpose:**
-- Uses the loaded model to predict HDI values.
-- Confirms that the saved model works correctly.
+- Accepts user input from the HTML form.
+- Converts the input into numerical values.
+- Passes the input to the trained model.
+- Generates the predicted HDI score.
+- Displays the prediction on the web page.
 
 ---
 
-## Benefits of Saving the Model
+## Run the Flask Application
 
-- Eliminates the need for retraining.
-- Reduces execution time.
-- Saves computational resources.
-- Ensures consistent predictions.
-- Simplifies deployment in Flask applications.
-- Enables easy model sharing and reuse.
+```python
+if __name__ == "__main__":
+    app.run(debug=True)
+```
+
+**Purpose:**
+- Starts the Flask development server.
+- Enables debugging for easier development and testing.
+
+---
+
+## Application Workflow
+
+1. User opens the web application.
+2. The home page is displayed.
+3. The user enters HDI-related input values.
+4. The input is sent to the `/predict` route.
+5. The trained model generates the HDI prediction.
+6. The predicted HDI score is displayed on the web page.
 
 ---
 
 ## Summary
 
-The trained Linear Regression model is saved using the **Pickle** module as a `.pkl` file. This serialized model can be loaded whenever needed, making deployment efficient and allowing the Flask web application to generate predictions without retraining the model each time.
+The Flask web application serves as the deployment interface for the HDI Prediction System. It loads the saved machine learning model, accepts user input through a web form, processes the data, and returns the predicted Human Development Index (HDI) score in a user-friendly format.

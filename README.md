@@ -1,119 +1,124 @@
-# Flask Web Application
+# User Interface (UI) - Showcasing Predictions
 
 ## Overview
 
-After training and saving the machine learning model, the next step is to develop a web application using **Flask**. Flask provides a lightweight framework for building web applications, handling user requests, and displaying prediction results.
+The HDI Prediction System provides a simple and user-friendly web interface built using **Flask**, **HTML**, and **CSS**. The application enables users to enter human development indicators and receive a predicted Human Development Index (HDI) score instantly.
 
-The trained HDI prediction model is loaded using the **Pickle** module, while **NumPy** is used to process numerical input data before passing it to the model for prediction.
-
----
-
-## Import Required Libraries
-
-Import the required libraries for the Flask application.
-
-```python
-from flask import Flask, render_template, request
-import numpy as np
-import pickle
-```
-
-**Purpose:**
-- **Flask** – Creates the web application and manages routes.
-- **Pickle** – Loads the trained machine learning model.
-- **NumPy** – Handles numerical input data for prediction.
+The application consists of three main pages.
 
 ---
 
-## Initialize the Flask Application
+## 1. Home Page (`home.html`)
 
-Create a Flask application and load the saved HDI prediction model.
+The **Home Page** serves as the landing page of the application.
 
-```python
-app = Flask(__name__)
+### Features
 
-model = pickle.load(open("models/hdi_prediction_model.pkl", "rb"))
-```
+- Brief introduction to the Human Development Index (HDI).
+- Explains the importance of HDI in measuring a country's development.
+- Provides navigation to the prediction page.
+- Includes a **Predict** button in the top-right corner.
 
-**Purpose:**
-- Initializes the Flask application.
-- Loads the trained model into memory.
-- Makes the model available for predictions.
+**Workflow**
 
----
-
-## Home Route
-
-The home route displays the application's main page.
-
-```python
-@app.route("/")
-def home():
-    return render_template("home.html")
-```
-
-**Purpose:**
-- Handles requests to the home page.
-- Renders the `home.html` template.
-- Introduces the HDI Prediction System.
+1. User opens the application.
+2. Reads the project introduction.
+3. Clicks the **Predict** button.
+4. Navigates to the prediction page.
 
 ---
 
-## Prediction Route
+## 2. Prediction Page (`indexnew.html`)
 
-The `/predict` route receives user input, processes it, and generates an HDI prediction.
+The **Prediction Page** allows users to enter the required input values for predicting the Human Development Index.
 
-```python
-@app.route("/predict", methods=["POST"])
-def predict():
+### User Inputs
 
-    input_features = [float(x) for x in request.form.values()]
+The user provides information such as:
 
-    final_input = np.array([input_features])
+- Country
+- Life Expectancy
+- Mean Years of Schooling
+- Expected Years of Schooling
+- Gross National Income (GNI) per Capita
+- Other HDI-related indicators
 
-    prediction = model.predict(final_input)
+### Features
 
-    output = round(prediction[0], 3)
+- Country selection using a dropdown list.
+- Numeric input fields with valid ranges.
+- Input validation for accurate predictions.
+- **Predict** button to submit the form.
 
-    return render_template(
-        "index.html",
-        prediction_text=f"Predicted HDI Score: {output}"
-    )
-```
+### Workflow
 
-**Purpose:**
-- Accepts user input from the HTML form.
-- Converts the input into numerical values.
-- Passes the input to the trained model.
-- Generates the predicted HDI score.
-- Displays the prediction on the web page.
+1. Select a country.
+2. Enter all required input values.
+3. Click the **Predict** button.
+4. The data is sent to the Flask backend.
+5. The trained machine learning model processes the input.
 
 ---
 
-## Run the Flask Application
+## 3. Prediction Result
 
-```python
-if __name__ == "__main__":
-    app.run(debug=True)
+After processing the user inputs, the application displays the predicted Human Development Index (HDI) score.
+
+### Output
+
+- Predicted HDI Score
+- Rounded prediction value for better readability
+- User-friendly result displayed on the same page
+
+Example:
+
+```text
+Predicted HDI Score: 0.874
 ```
-
-**Purpose:**
-- Starts the Flask development server.
-- Enables debugging for easier development and testing.
 
 ---
 
 ## Application Workflow
 
-1. User opens the web application.
-2. The home page is displayed.
-3. The user enters HDI-related input values.
-4. The input is sent to the `/predict` route.
-5. The trained model generates the HDI prediction.
-6. The predicted HDI score is displayed on the web page.
+```text
+Home Page
+      │
+      ▼
+Prediction Page
+      │
+      ▼
+Enter Input Values
+      │
+      ▼
+Click Predict
+      │
+      ▼
+Flask Backend
+      │
+      ▼
+Load Trained Model
+      │
+      ▼
+Generate HDI Prediction
+      │
+      ▼
+Display Prediction Result
+```
+
+---
+
+## Technologies Used
+
+- Flask
+- HTML5
+- CSS3
+- Python
+- NumPy
+- Pickle
+- Scikit-learn
 
 ---
 
 ## Summary
 
-The Flask web application serves as the deployment interface for the HDI Prediction System. It loads the saved machine learning model, accepts user input through a web form, processes the data, and returns the predicted Human Development Index (HDI) score in a user-friendly format.
+The web interface provides an intuitive and interactive experience for users to predict the Human Development Index (HDI). Users can navigate from the home page to the prediction page, enter relevant human development indicators, and instantly view the predicted HDI score generated by the trained machine learning model.

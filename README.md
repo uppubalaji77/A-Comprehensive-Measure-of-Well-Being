@@ -1,119 +1,72 @@
-# Installation Guide
+# Project Structure
 
-## Environment Setup
+To maintain a clean, organized, and scalable project, create the folder structure shown below. Organizing files into dedicated directories improves project maintainability, simplifies navigation, and prevents path-related issues during development and deployment.
 
-Before running the HDI Prediction System, install all the required Python libraries and dependencies. These libraries are essential for data processing, visualization, machine learning model development, and deploying the Flask web application.
+After creating the folders, place each file in its appropriate directory according to the project architecture.
 
-### Step 1: Open Visual Studio Code
+## Folder Structure
 
-- Launch **Visual Studio Code**.
-- Open the project folder.
-- Open the integrated terminal by selecting:
-  - **Terminal → New Terminal**
-  - or press **Ctrl + `**
-
----
-
-## Step 2: Install Required Libraries
-
-Run the following commands one by one in the terminal.
-
-### Install NumPy
-
-```bash
-pip install numpy
 ```
-
-**Purpose:** Provides support for numerical operations, arrays, and mathematical computations.
-
----
-
-### Install Pandas
-
-```bash
-pip install pandas
-```
-
-**Purpose:** Used for data manipulation, preprocessing, and dataset management.
-
----
-
-### Install Matplotlib
-
-```bash
-pip install matplotlib
-```
-
-**Purpose:** Creates charts, graphs, and data visualizations.
-
----
-
-### Install Scikit-learn
-
-```bash
-pip install scikit-learn
-```
-
-**Purpose:** Provides machine learning algorithms, preprocessing tools, model training, and evaluation.
-
----
-
-### Install Flask
-
-```bash
-pip install flask
-```
-
-**Purpose:** Builds the web application backend and integrates the trained machine learning model.
-
----
-
-### Install Seaborn
-
-```bash
-pip install seaborn
-```
-
-**Purpose:** Creates statistical data visualizations with an easy-to-use interface.
-
----
-
-## Step 3: Verify Installation
-
-To verify that all libraries are installed correctly, run:
-
-```bash
-pip list
+HDI-Prediction-System/
+│
+├── dataset/
+│   └── hdi_dataset.csv
+│
+├── models/
+│   └── hdi_prediction_model.pkl
+│
+├── notebooks/
+│   └── HDI_Analysis.ipynb
+│
+├── src/
+│   ├── train_model.py
+│   ├── predict.py
+│   └── preprocessing.py
+│
+├── templates/
+│   ├── index.html
+│   └── result.html
+│
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── script.js
+│   └── images/
+│
+├── reports/
+│   └── visualization_report.pdf
+│
+├── app.py
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-## Alternative Installation
+## Directory Description
 
-Install all required libraries with a single command:
-
-```bash
-pip install numpy pandas matplotlib seaborn scikit-learn flask
-```
-
----
-
-## Project Requirements
-
-- Python 3.10 or later
-- Visual Studio Code
-- Git
-- GitHub
-- Internet connection (for installing packages)
+| Folder | Description |
+|---------|-------------|
+| `dataset/` | Stores the dataset used for training and testing the model. |
+| `models/` | Contains the trained machine learning model files. |
+| `notebooks/` | Jupyter notebooks used for data analysis and experimentation. |
+| `src/` | Python source code for preprocessing, training, and prediction. |
+| `templates/` | HTML templates used by the Flask web application. |
+| `static/` | Static resources such as CSS, JavaScript, and images. |
+| `reports/` | Stores generated reports and visualizations. |
 
 ---
 
-## Next Step
+## Verification
 
-After installing all dependencies, the project environment is ready for:
-- Data preprocessing
-- Exploratory Data Analysis (EDA)
-- Machine learning model training
-- Model evaluation
-- Flask web application development
-- HDI prediction deployment
+Before proceeding with development, ensure that:
+
+- All folders have been created successfully.
+- Every file is placed in the correct directory.
+- The project structure matches the architecture shown above.
+- Required dependencies have been installed.
+- File paths are correctly configured.
+
+A well-organized project structure improves readability, simplifies maintenance, and ensures that all modules, resources, and assets can be accessed correctly during development and deployment.

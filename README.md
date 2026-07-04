@@ -1,62 +1,76 @@
-# Dataset Collection
+# Loading and Understanding the Dataset
 
 ## Overview
 
-The dataset used in this project was collected from publicly available open-source platforms. Common sources for machine learning datasets include:
+The dataset is loaded into a **Pandas DataFrame** to begin the data analysis process. The dataset is provided in **CSV (Comma-Separated Values)** format and contains various Human Development Index (HDI) indicators for different countries.
 
-- Kaggle
-- Data.gov
-- UCI Machine Learning Repository
+After loading the dataset, the `head()` method is used to display the first five rows. This provides a quick overview of the dataset's structure, available features, and sample values.
 
-For this project, the **Human Development Index (HDI)** dataset was obtained from the GitHub repository associated with the guided project.
+The dataset contains **195 rows** (countries) and **82 columns** (human development indicators).
 
 ---
 
-## Dataset Source
-
-**Source:** GitHub (Guided Projects)
-
-**Dataset Download Link:**
-
-https://github.com/Guided-Projects/HumanDevelopmentIndex/tree/main/Dataset
-
----
-
-## Dataset Description
-
-The dataset contains information related to the Human Development Index (HDI) and its contributing factors. It is used to train and evaluate the machine learning model for predicting HDI values.
-
-The dataset includes features such as:
-
-- Country Name
-- Life Expectancy
-- Education Index
-- Income Index
-- Human Development Index (Target Variable)
-
----
-
-## Steps to Use the Dataset
-
-1. Download the dataset from the link above.
-2. Save the dataset in the `dataset/` folder of the project.
-3. Load the dataset using the Pandas library.
-4. Explore the dataset to understand its structure and features.
-5. Perform preprocessing before training the machine learning model.
-
----
-
-## Loading the Dataset
+## Import the Pandas Library
 
 ```python
 import pandas as pd
+```
 
+---
+
+## Load the Dataset
+
+```python
 dataset = pd.read_csv("dataset/hdi_dataset.csv")
+```
+
+---
+
+## Display the First Five Rows
+
+```python
 dataset.head()
 ```
+
+**Purpose:**
+- Displays the first five rows of the dataset.
+- Provides a quick overview of the available features.
+- Helps verify that the dataset has been loaded correctly.
+
+---
+
+## Check the Dataset Shape
+
+```python
+dataset.shape
+```
+
+**Output:**
+
+```python
+(195, 82)
+```
+
+**Explanation:**
+- **195 Rows** → Represents 195 countries.
+- **82 Columns** → Represents 82 Human Development Index indicators and related features.
+
+---
+
+## Display Dataset Information
+
+```python
+dataset.info()
+```
+
+**Purpose:**
+- Displays the total number of rows and columns.
+- Shows the data type of each column.
+- Identifies missing (null) values.
+- Provides memory usage information.
 
 ---
 
 ## Summary
 
-The dataset serves as the foundation of the HDI Prediction System. Proper understanding and preprocessing of the dataset are essential for building an accurate and reliable machine learning model.
+Loading the dataset into a Pandas DataFrame is the first step in the machine learning workflow. By inspecting the dataset using `head()`, `shape`, and `info()`, we gain an understanding of its structure, dimensions, features, and data quality before performing preprocessing, visualization, and model training.

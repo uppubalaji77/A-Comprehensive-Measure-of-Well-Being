@@ -1,124 +1,119 @@
-# Project Workflow
+# Installation Guide
 
-The **HDI Prediction System** follows a structured workflow consisting of multiple epics that cover the complete machine learning lifecycle, from environment setup to model deployment. Each epic focuses on a specific phase to ensure systematic and efficient project development.
+## Environment Setup
 
----
+Before running the HDI Prediction System, install all the required Python libraries and dependencies. These libraries are essential for data processing, visualization, machine learning model development, and deploying the Flask web application.
 
-## Epic 1: Environment Setup and Package Installation
+### Step 1: Open Visual Studio Code
 
-### Story 1
-- Install Python, Flask, and all required machine learning libraries.
-
-### Story 2
-- Create the project folder structure, including:
-  - `dataset/`
-  - `models/`
-  - `src/`
-  - `templates/`
-  - `static/`
-  - `reports/`
+- Launch **Visual Studio Code**.
+- Open the project folder.
+- Open the integrated terminal by selecting:
+  - **Terminal → New Terminal**
+  - or press **Ctrl + `**
 
 ---
 
-## Epic 2: Importing Required Libraries
+## Step 2: Install Required Libraries
 
-### Story 1
-Import the required Python libraries:
+Run the following commands one by one in the terminal.
 
-- NumPy
-- Pandas
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- Pickle
-- Flask
+### Install NumPy
 
-These libraries support data processing, visualization, machine learning, model serialization, and web application development.
+```bash
+pip install numpy
+```
+
+**Purpose:** Provides support for numerical operations, arrays, and mathematical computations.
 
 ---
 
-## Epic 3: Dataset Download and Understanding
+### Install Pandas
 
-### Story 1
-- Download the HDI dataset from Kaggle.
+```bash
+pip install pandas
+```
 
-### Story 2
-- Load the dataset into the development environment.
-- Explore the dataset structure, features, and target variable.
-
-### Story 3
-- Perform exploratory data analysis (EDA).
-- Visualize trends, distributions, and feature relationships.
+**Purpose:** Used for data manipulation, preprocessing, and dataset management.
 
 ---
 
-## Epic 4: Data Preprocessing and Label Encoding
+### Install Matplotlib
 
-### Story 1
-- Select independent and dependent variables.
+```bash
+pip install matplotlib
+```
 
-### Story 2
-- Handle missing or null values.
-
-### Story 3
-- Encode categorical variables using Label Encoding.
-
-### Story 4
-- Prepare the cleaned dataset for machine learning.
+**Purpose:** Creates charts, graphs, and data visualizations.
 
 ---
 
-## Epic 5: Train-Test Split
+### Install Scikit-learn
 
-### Story 1
-- Split the processed dataset into training and testing datasets for model development and evaluation.
+```bash
+pip install scikit-learn
+```
 
----
-
-## Epic 6: Model Training
-
-### Story 1
-- Train the Linear Regression model.
-
-### Story 2
-- Generate predictions using the trained model.
-
-### Story 3
-- Evaluate the model using regression performance metrics and visualizations.
+**Purpose:** Provides machine learning algorithms, preprocessing tools, model training, and evaluation.
 
 ---
 
-## Epic 7: Model Saving
+### Install Flask
 
-### Story 1
-- Save the trained model using Pickle.
+```bash
+pip install flask
+```
 
-### Story 2
-- Store the serialized model for future predictions and deployment.
-
----
-
-## Epic 8: Flask Web Application
-
-### Story 1
-- Develop the Flask backend to process user inputs and generate predictions.
-
-### Story 2
-- Create HTML templates and integrate them with Flask.
-
-### Story 3
-- Test and validate the web application to ensure accurate predictions and smooth functionality.
+**Purpose:** Builds the web application backend and integrates the trained machine learning model.
 
 ---
 
-## Workflow Summary
+### Install Seaborn
 
-1. Environment Setup
-2. Import Libraries
-3. Dataset Collection
-4. Data Preprocessing
-5. Train-Test Split
-6. Model Training
-7. Model Serialization
-8. Flask Application Development
-9. Model Deployment
+```bash
+pip install seaborn
+```
+
+**Purpose:** Creates statistical data visualizations with an easy-to-use interface.
+
+---
+
+## Step 3: Verify Installation
+
+To verify that all libraries are installed correctly, run:
+
+```bash
+pip list
+```
+
+---
+
+## Alternative Installation
+
+Install all required libraries with a single command:
+
+```bash
+pip install numpy pandas matplotlib seaborn scikit-learn flask
+```
+
+---
+
+## Project Requirements
+
+- Python 3.10 or later
+- Visual Studio Code
+- Git
+- GitHub
+- Internet connection (for installing packages)
+
+---
+
+## Next Step
+
+After installing all dependencies, the project environment is ready for:
+- Data preprocessing
+- Exploratory Data Analysis (EDA)
+- Machine learning model training
+- Model evaluation
+- Flask web application development
+- HDI prediction deployment

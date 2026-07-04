@@ -1,121 +1,62 @@
-# Importing Required Libraries
+# Dataset Collection
 
-Before developing the machine learning model, it is important to import all the required Python libraries that will be used throughout the project. These libraries provide the necessary tools for loading datasets, performing data preprocessing, creating visualizations, training machine learning models, and evaluating their performance.
+## Overview
 
-Importing all required libraries at the beginning of the program helps maintain an organized and efficient workflow. It also improves code readability, simplifies debugging, and ensures that all dependencies are available before data analysis and model development begin.
+The dataset used in this project was collected from publicly available open-source platforms. Common sources for machine learning datasets include:
 
-## Required Libraries
+- Kaggle
+- Data.gov
+- UCI Machine Learning Repository
 
-### NumPy
-
-```python
-import numpy as np
-```
-
-**Purpose:**
-- Numerical computations
-- Array operations
-- Mathematical functions
+For this project, the **Human Development Index (HDI)** dataset was obtained from the GitHub repository associated with the guided project.
 
 ---
 
-### Pandas
+## Dataset Source
+
+**Source:** GitHub (Guided Projects)
+
+**Dataset Download Link:**
+
+https://github.com/Guided-Projects/HumanDevelopmentIndex/tree/main/Dataset
+
+---
+
+## Dataset Description
+
+The dataset contains information related to the Human Development Index (HDI) and its contributing factors. It is used to train and evaluate the machine learning model for predicting HDI values.
+
+The dataset includes features such as:
+
+- Country Name
+- Life Expectancy
+- Education Index
+- Income Index
+- Human Development Index (Target Variable)
+
+---
+
+## Steps to Use the Dataset
+
+1. Download the dataset from the link above.
+2. Save the dataset in the `dataset/` folder of the project.
+3. Load the dataset using the Pandas library.
+4. Explore the dataset to understand its structure and features.
+5. Perform preprocessing before training the machine learning model.
+
+---
+
+## Loading the Dataset
 
 ```python
 import pandas as pd
-```
 
-**Purpose:**
-- Load CSV datasets
-- Data cleaning
-- Data manipulation
-- Data analysis
+dataset = pd.read_csv("dataset/hdi_dataset.csv")
+dataset.head()
+```
 
 ---
-
-### Matplotlib
-
-```python
-import matplotlib.pyplot as plt
-```
-
-**Purpose:**
-- Create graphs and charts
-- Visualize trends
-- Plot model results
-
----
-
-### Seaborn
-
-```python
-import seaborn as sns
-```
-
-**Purpose:**
-- Statistical data visualization
-- Heatmaps
-- Pair plots
-- Distribution plots
-- Correlation analysis
-
----
-
-### Scikit-learn
-
-```python
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
-```
-
-**Purpose:**
-- Split the dataset into training and testing sets
-- Train the Linear Regression model
-- Evaluate model performance
-
----
-
-### Pickle
-
-```python
-import pickle
-```
-
-**Purpose:**
-- Save the trained machine learning model
-- Load the model for future predictions
-
----
-
-### Flask
-
-```python
-from flask import Flask, render_template, request
-```
-
-**Purpose:**
-- Build the web application
-- Handle user requests
-- Display prediction results
-
----
-
-## Complete Import Statements
-
-```python
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import pickle
-
-from flask import Flask, render_template, request
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
-```
 
 ## Summary
 
-These libraries form the foundation of the HDI Prediction System. They support data preprocessing, visualization, machine learning model development, model serialization, and deployment through the Flask web application.
+The dataset serves as the foundation of the HDI Prediction System. Proper understanding and preprocessing of the dataset are essential for building an accurate and reliable machine learning model.

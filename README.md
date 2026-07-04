@@ -1,76 +1,110 @@
-# Loading and Understanding the Dataset
+# Data Visualization
 
 ## Overview
 
-The dataset is loaded into a **Pandas DataFrame** to begin the data analysis process. The dataset is provided in **CSV (Comma-Separated Values)** format and contains various Human Development Index (HDI) indicators for different countries.
+Data visualization is an important step in understanding the relationships between Human Development Index (HDI) and its influencing factors. In this project, multiple visualizations are created using **Matplotlib** and **Seaborn** to explore the dataset and identify important features for machine learning.
 
-After loading the dataset, the `head()` method is used to display the first five rows. This provides a quick overview of the dataset's structure, available features, and sample values.
-
-The dataset contains **195 rows** (countries) and **82 columns** (human development indicators).
-
----
-
-## Import the Pandas Library
+To keep the plots clear and readable, the first **20 rows** of the dataset are selected and stored in a new DataFrame named `data1`.
 
 ```python
-import pandas as pd
+data1 = dataset.head(20)
 ```
 
 ---
 
-## Load the Dataset
+## 1. Display Unique Country Names
+
+Retrieve all unique country names from the dataset.
 
 ```python
-dataset = pd.read_csv("dataset/hdi_dataset.csv")
-```
-
----
-
-## Display the First Five Rows
-
-```python
-dataset.head()
+dataset["Country"].unique()
 ```
 
 **Purpose:**
-- Displays the first five rows of the dataset.
-- Provides a quick overview of the available features.
-- Helps verify that the dataset has been loaded correctly.
+- Displays all unique countries.
+- Verifies that there are no duplicate country names.
+- Confirms the integrity of the dataset.
 
 ---
 
-## Check the Dataset Shape
+## 2. Mean Years of Schooling vs HDI
 
 ```python
-dataset.shape
-```
+import seaborn as sns
+import matplotlib.pyplot as plt
 
-**Output:**
+sns.stripplot(
+    x="Mean Years of Schooling",
+    y="HDI Score",
+    data=data1
+)
 
-```python
-(195, 82)
-```
-
-**Explanation:**
-- **195 Rows** → Represents 195 countries.
-- **82 Columns** → Represents 82 Human Development Index indicators and related features.
-
----
-
-## Display Dataset Information
-
-```python
-dataset.info()
+plt.title("Mean Years of Schooling vs HDI")
+plt.show()
 ```
 
 **Purpose:**
-- Displays the total number of rows and columns.
-- Shows the data type of each column.
-- Identifies missing (null) values.
-- Provides memory usage information.
+- Shows the relationship between education and HDI.
+- Helps determine whether higher education levels contribute to higher HDI scores.
 
 ---
 
-## Summary
+## 3. Life Expectancy vs HDI
 
-Loading the dataset into a Pandas DataFrame is the first step in the machine learning workflow. By inspecting the dataset using `head()`, `shape`, and `info()`, we gain an understanding of its structure, dimensions, features, and data quality before performing preprocessing, visualization, and model training.
+```python
+sns.stripplot(
+    x="Life Expectancy",
+    y="HDI Score",
+    data=data1
+)
+
+plt.title("Life Expectancy vs HDI")
+plt.show()
+```
+
+**Purpose:**
+- Visualizes the relationship between life expectancy and HDI.
+- Demonstrates how longevity influences human development.
+
+---
+
+## 4. Correlation Heatmap
+
+```python
+plt.figure(figsize=(12,8))
+
+sns.heatmap(
+    dataset.corr(numeric_only=True),
+    annot=True,
+    cmap="coolwarm"
+)
+
+plt.title("Correlation Heatmap")
+plt.show()
+```
+
+**Purpose:**
+- Displays correlation coefficients between numerical features.
+- Identifies features with the strongest relationship to the HDI Score.
+- Helps select the most relevant input variables for model training.
+
+---
+
+## Visualization Summary
+
+The visualizations help to:
+
+- Understand the dataset structure.
+- Identify relationships between HDI and key indicators.
+- Detect feature importance.
+- Support feature selection for machine learning.
+- Improve model performance through exploratory data analysis.
+
+---
+
+## Technologies Used
+
+- Pandas
+- Matplotlib
+- Seaborn
+- NumPy

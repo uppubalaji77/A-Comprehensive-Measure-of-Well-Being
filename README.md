@@ -1,110 +1,55 @@
-# Data Visualization
+# Feature Selection
 
 ## Overview
 
-Data visualization is an important step in understanding the relationships between Human Development Index (HDI) and its influencing factors. In this project, multiple visualizations are created using **Matplotlib** and **Seaborn** to explore the dataset and identify important features for machine learning.
+Feature selection is an important step in the machine learning process. In this stage, the dataset is divided into **independent variables (X)** and the **dependent variable (Y)**.
 
-To keep the plots clear and readable, the first **20 rows** of the dataset are selected and stored in a new DataFrame named `data1`.
+- **Independent Variables (X):** These are the input features used to train the machine learning model.
+- **Dependent Variable (Y):** This is the target variable that the model predicts, which is the **HDI Score**.
 
-```python
-data1 = dataset.head(20)
-```
-
----
-
-## 1. Display Unique Country Names
-
-Retrieve all unique country names from the dataset.
-
-```python
-dataset["Country"].unique()
-```
-
-**Purpose:**
-- Displays all unique countries.
-- Verifies that there are no duplicate country names.
-- Confirms the integrity of the dataset.
+Selecting the appropriate features improves the model's accuracy and helps identify the factors that influence the Human Development Index.
 
 ---
 
-## 2. Mean Years of Schooling vs HDI
+## Independent Variables (X)
+
+The independent variables are selected from the dataset using their column index positions. These columns contain the input features required for training the model.
+
+Example features include:
+
+- Country
+- Life Expectancy
+- Mean Years of Schooling
+- Expected Years of Schooling
+- Gross National Income (GNI)
+- Other HDI-related indicators
 
 ```python
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-sns.stripplot(
-    x="Mean Years of Schooling",
-    y="HDI Score",
-    data=data1
-)
-
-plt.title("Mean Years of Schooling vs HDI")
-plt.show()
+X = dataset.iloc[:, [2, 5, 6, 7, 8]].values
 ```
 
 **Purpose:**
-- Shows the relationship between education and HDI.
-- Helps determine whether higher education levels contribute to higher HDI scores.
+- Stores all input features.
+- Used to train the machine learning model.
+- Represents the factors that influence the HDI score.
 
 ---
 
-## 3. Life Expectancy vs HDI
+## Dependent Variable (Y)
+
+The dependent variable is the **HDI Score**, which is the value the model aims to predict.
 
 ```python
-sns.stripplot(
-    x="Life Expectancy",
-    y="HDI Score",
-    data=data1
-)
-
-plt.title("Life Expectancy vs HDI")
-plt.show()
+Y = dataset.iloc[:, 4].values
 ```
 
 **Purpose:**
-- Visualizes the relationship between life expectancy and HDI.
-- Demonstrates how longevity influences human development.
+- Stores the target variable.
+- Used during model training and evaluation.
+- Represents the Human Development Index (HDI) score.
 
 ---
 
-## 4. Correlation Heatmap
+## Summary
 
-```python
-plt.figure(figsize=(12,8))
-
-sns.heatmap(
-    dataset.corr(numeric_only=True),
-    annot=True,
-    cmap="coolwarm"
-)
-
-plt.title("Correlation Heatmap")
-plt.show()
-```
-
-**Purpose:**
-- Displays correlation coefficients between numerical features.
-- Identifies features with the strongest relationship to the HDI Score.
-- Helps select the most relevant input variables for model training.
-
----
-
-## Visualization Summary
-
-The visualizations help to:
-
-- Understand the dataset structure.
-- Identify relationships between HDI and key indicators.
-- Detect feature importance.
-- Support feature selection for machine learning.
-- Improve model performance through exploratory data analysis.
-
----
-
-## Technologies Used
-
-- Pandas
-- Matplotlib
-- Seaborn
-- NumPy
+Feature selection separates the dataset into input features (**X**) and the target variable (**Y**). This prepared data is then used for preprocessing, model training, testing, and evaluation, enabling the machine learning model to learn the relationship between the selected indicators and the HDI score.

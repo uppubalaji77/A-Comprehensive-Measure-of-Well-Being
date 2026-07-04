@@ -1,55 +1,54 @@
-# Feature Selection
+# Handling Missing Values
 
 ## Overview
 
-Feature selection is an important step in the machine learning process. In this stage, the dataset is divided into **independent variables (X)** and the **dependent variable (Y)**.
+Before training the machine learning model, it is essential to identify and handle missing (null) values in the dataset. Missing values can negatively impact the model's performance and lead to inaccurate predictions.
 
-- **Independent Variables (X):** These are the input features used to train the machine learning model.
-- **Dependent Variable (Y):** This is the target variable that the model predicts, which is the **HDI Score**.
-
-Selecting the appropriate features improves the model's accuracy and helps identify the factors that influence the Human Development Index.
+In this project, null values in the independent variables (**X**) are identified using the `isnull().sum()` method and replaced with the **mean value** of their respective columns using the `fillna()` method.
 
 ---
 
-## Independent Variables (X)
+## Step 1: Check for Null Values
 
-The independent variables are selected from the dataset using their column index positions. These columns contain the input features required for training the model.
-
-Example features include:
-
-- Country
-- Life Expectancy
-- Mean Years of Schooling
-- Expected Years of Schooling
-- Gross National Income (GNI)
-- Other HDI-related indicators
+Use the following code to count the number of missing values in each selected input feature.
 
 ```python
-X = dataset.iloc[:, [2, 5, 6, 7, 8]].values
+X.isnull().sum()
 ```
 
 **Purpose:**
-- Stores all input features.
-- Used to train the machine learning model.
-- Represents the factors that influence the HDI score.
+- Detects missing (null) values in each column.
+- Helps identify which features require preprocessing.
+- Ensures data quality before model training.
 
 ---
 
-## Dependent Variable (Y)
+## Step 2: Fill Null Values
 
-The dependent variable is the **HDI Score**, which is the value the model aims to predict.
+Replace the missing values with the mean of each respective column.
 
 ```python
-Y = dataset.iloc[:, 4].values
+X = X.fillna(X.mean())
 ```
 
 **Purpose:**
-- Stores the target variable.
-- Used during model training and evaluation.
-- Represents the Human Development Index (HDI) score.
+- Replaces null values with the column mean.
+- Preserves the dataset size by avoiding row deletion.
+- Improves the quality of the dataset for machine learning.
+
+---
+
+## Why Use the Mean?
+
+Using the column mean is a common technique for handling missing numerical data because it:
+
+- Maintains the overall distribution of the dataset.
+- Prevents data loss by keeping all records.
+- Reduces the impact of missing values on model performance.
+- Prepares the dataset for effective machine learning.
 
 ---
 
 ## Summary
 
-Feature selection separates the dataset into input features (**X**) and the target variable (**Y**). This prepared data is then used for preprocessing, model training, testing, and evaluation, enabling the machine learning model to learn the relationship between the selected indicators and the HDI score.
+Handling missing values is a crucial preprocessing step that improves data quality and ensures the machine learning model receives complete and reliable input data. By identifying null values with `isnull().sum()` and replacing them using `fillna(X.mean())`, the dataset becomes ready for training and evaluation.

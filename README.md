@@ -1,24 +1,14 @@
-## Pre-requisites
+## Tools and Technologies
 
-Before running this project, ensure you have the following installed:
+The project was developed using powerful Python-based tools and libraries for data processing, machine learning, visualization, and web deployment.
 
-- Python 3.10 or later
-- Visual Studio Code (or any Python IDE)
-- Git
-- GitHub account
-- Jupyter Notebook (optional)
-
-### Required Python Libraries
-
-- NumPy
-- Pandas
-- Scikit-learn
-- Matplotlib
-- Seaborn
-- Flask
-
-Install all dependencies using:
-
-```bash
-pip install -r requirements.txt
-```
+| Tool / Library | Description | Official Website |
+|----------------|-------------|------------------|
+| **Anaconda Navigator** | Graphical interface for managing Python environments, packages, and data science applications. | https://www.anaconda.com/download |
+| **PyCharm** | Python Integrated Development Environment (IDE) with debugging, code analysis, and intelligent coding support. | https://www.jetbrains.com/pycharm/ |
+| **NumPy** | Library for numerical computing and multi-dimensional array operations. | https://numpy.org/doc/stable/ |
+| **Pandas** | Library for data manipulation, cleaning, and analysis. | https://pandas.pydata.org/docs/ |
+| **Scikit-learn** | Machine Learning library providing classification, regression, clustering, and model evaluation algorithms. | https://scikit-learn.org/stable/ |
+| **Matplotlib** | Library for creating static, animated, and interactive visualizations. | https://matplotlib.org/stable/ |
+| **Seaborn** | High-level statistical data visualization library built on Matplotlib. | https://seaborn.pydata.org/ |
+| **Flask** | Lightweight Python web framework used for developing and deploying web applications and machine learning models. | https://flask.palletsprojects.com/ |
